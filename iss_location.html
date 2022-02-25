@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Where is the ISS?</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <link rel="stylesheet" type="text/css" href="iss_location.css">
+    <script async defer src="iss_location.js"></script>
+
+</head>
+<body>
+<h1>Where is the ISS?</h1>
+
+<div>
+    <p>At <span id="iss-update-time">N/A</span> the iss is over the following coordinates:</p>
+    <p>ISS Latitude: <span id="iss-lat"></span> </p>
+    <p>ISS Longitude: <span id="iss-long"></span> </p>
+</div>
+
+<div id="iss-map">
+
+</div> <br>
+<a href="https://iconarchive.com/show/noto-emoji-travel-places-icons-by-google/42597-satellite-icon.html" title="iss icons">satellite icon found on iconarchive.</a> <br>
+<a href="https://iconarchive.com/icons/google/noto-emoji-travel-places/license.txt" title="licence.txt file">licence.txt</a>
+
+</body>
+</html>
