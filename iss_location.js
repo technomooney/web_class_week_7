@@ -4,6 +4,7 @@ let url = "https://api.wheretheiss.at/v1/satellites/25544"
 let issLat = document.querySelector("#iss-lat")
 let issLong = document.querySelector("#iss-long")
 let issUpdateTime = document.querySelector("#iss-update-time")
+let maxRetry = 3
 let centerPoint = [0,0]  // Array of latitude and longitude
 let zoomLevel =2  // 1 = whole world, 10 = large city, 20 = city blocks
 let updateInterval = 10000
@@ -21,7 +22,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copywrite">OpenStreetMap</a>',
 }).addTo(map)
 
-function iss() {
+
+iss(maxRetry)
+
+function iss(attempts) {
+    if (attempts <=0) {
+        alert("Failed to contact the ISS location server!")
+        return
+    }
     fetch(url).then(res => {
         return res.json()
     }).then((issData) => {
@@ -37,7 +45,11 @@ function iss() {
             issMarker.setLatLng([lat,long])
         }
         issUpdateTime.innerHTML = Date()
-    }).catch((err) => console.log("ERROR!", err))
+    }).catch((err) => {
+        attempts--
+        console.log("ERROR!", err)
+    })
+        .finally( () => {
+        setTimeout(iss,updateInterval, attempts)
+    })
 }
-iss()
-setInterval(iss,updateInterval)
